@@ -138,12 +138,11 @@ def update_feed(feed):
     episodes into our local config.
     '''
     d = feedparser.parse(feed['url'])
-    #only append new episodes!
+    # only append new episodes!
     for episode in episodes_from_feed(d):
         found = False
         for old_episode in feed['episodes']:
-            if episode['published'] == old_episode['published'] \
-                    and episode['title'] == old_episode['title']:
+            if episode['published'] == old_episode['published'] and episode['title'] == old_episode['title']:
                 found = True
         if not found:
             feed['episodes'].append(episode)
@@ -221,7 +220,7 @@ def available_feeds():
     paths = [p for p in os.listdir(base)
              if os.path.isdir(get_folder(p))
              and os.path.isfile(get_feed_file(p))]
-    #for every folder, check wether a configuration file exists.
+    # for every folder, check wether a configuration file exists.
     results = []
     for shortname in paths:
         with open(get_feed_file(shortname), 'r') as f:
@@ -327,7 +326,7 @@ if __name__ == '__main__':
             maxnum = int(arguments['--how-many'])
         else:
             maxnum = CONFIGURATION['maxnum']
-        #download episodes for a specific feed
+        # download episodes for a specific feed
         if arguments['<shortname>']:
             feed = find_feed(arguments['<shortname>'])
             if feed:
@@ -336,7 +335,7 @@ if __name__ == '__main__':
             else:
                 print_err("feed {} not found".format(arguments['<shortname>']))
                 exit(-1)
-        #download episodes for all feeds.
+        # download episodes for all feeds.
         else:
             for feed in available_feeds():
                 download_multiple(feed,  maxnum)
