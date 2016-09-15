@@ -16,6 +16,8 @@ Options:
 # (C) 2015 Bastian Reitemeier
 # mail(at)brtmr.de
 
+# Este fui eu que escrevi para testar o Git
+
 from colorama import Fore, Back, Style
 from docopt import docopt
 from os.path import expanduser
